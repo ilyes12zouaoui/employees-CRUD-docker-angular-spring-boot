@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+  flyway:
+    clean-on-validation-error: true
+  datasource:
+    url: jdbc:tc:postgresql:13-alpine:///
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    # Tests allocate DB-connections faster than they are released.
+    # Setting the initial allocation amount to 2 (instead of the default 10) solves this problem.
+    hikari:
+      maximum-pool-size: 2

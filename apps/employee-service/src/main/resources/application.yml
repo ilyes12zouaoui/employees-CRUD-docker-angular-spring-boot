@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15432/employees
+    username: employees
+    password: employees
+springdoc:
+  api-docs:
+    path: /api/open-api
+  swagger-ui:
+    path: /api/open-api.html
