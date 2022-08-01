@@ -1,0 +1,11 @@
+.flex-center-container{
+    padding-top: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-card{
+    max-width: 600px;
+    text-align: center;
+}

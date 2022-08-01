@@ -1,0 +1,9 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="flex-center-container">
+<ng-container *ngFor="let employee of employees">
+  <app-employee-element [employee]="employee"></app-employee-element>
+</ng-container>
+<mat-card *ngIf="employees.length === 0 && !isLoading" class="mat-elevation-z10">
+  <h1 class="mat-display-1">No employees were found. Please create new employees.</h1>
+</mat-card>
+</div>

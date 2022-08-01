@@ -1,0 +1,25 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<div  class="flex-center-container">
+  <mat-card *ngIf="!isLoading && isFound" class="employee-card mat-elevation-z10">
+    <mat-card-title>{{ employee.name }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ employee.gender }} ({{ employee.age }})</mat-card-subtitle
+    >
+    <mat-card-content>
+      <p>email: {{ employee.email }}</p>
+      <p>does sport: {{ employee.doesSport ? "yes" : "no" }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onUpdate()">
+        update
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete()">
+        delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card *ngIf="!isFound && !isLoading" class="mat-elevation-z10">
+    <h1 class="mat-display-1">No employee details found</h1>
+  </mat-card>
+</div>

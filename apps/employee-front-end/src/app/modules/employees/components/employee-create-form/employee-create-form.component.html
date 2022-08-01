@@ -1,0 +1,160 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="flex-center-container">
+  <mat-card class="employee-card mat-elevation-z10">
+    <h2 class="mat-h1">Create Employee</h2>
+
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="createForm"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      "
+    >
+      <mat-form-field appearance="standard">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type name"
+          formControlName="name"
+          #nameInput
+        />
+
+        <mat-error
+          *ngIf="
+            (createForm.get('name')?.touched ||
+              createForm.get('name')?.dirty) &&
+            createForm.get('name')?.invalid &&
+            createForm.get('name')?.getError('required')
+          "
+          >name is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (createForm.get('name')?.touched ||
+              createForm.get('name')?.dirty) &&
+            createForm.get('name')?.invalid &&
+            createForm.get('name')?.getError('testValueNotAllowed')
+          "
+          >test value not allowed</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (createForm.get('name')?.touched ||
+              createForm.get('name')?.dirty) &&
+            createForm.get('name')?.invalid &&
+            createForm.get('name')?.getError('minlength')
+          "
+          >min length 3</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type name"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="
+            (createForm.get('email')?.touched ||
+              createForm.get('email')?.dirty) &&
+            createForm.get('email')?.invalid &&
+            createForm.get('email')?.getError('required')
+          "
+          >email is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (createForm.get('email')?.touched ||
+              createForm.get('email')?.dirty) &&
+            createForm.get('email')?.invalid &&
+            createForm.get('email')?.getError('isEmailUnique')
+          "
+          >email is already used</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Age</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type age"
+          formControlName="age"
+        />
+        <mat-error
+          *ngIf="
+            (createForm.get('age')?.touched || createForm.get('age')?.dirty) &&
+            createForm.get('age')?.invalid &&
+            createForm.get('age')?.getError('required')
+          "
+          >age is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (createForm.get('age')?.touched || createForm.get('age')?.dirty) &&
+            createForm.get('age')?.invalid &&
+            createForm.get('age')?.getError('min')
+          "
+          >min age is 1</mat-error
+        >
+      </mat-form-field>
+
+      <div style="margin: 15px 0">
+        <mat-checkbox
+          color="primary"
+          class="example-margin"
+          name="doesSport"
+          formControlName="doesSport"
+          >does sport:</mat-checkbox
+        >
+        <mat-error
+          *ngIf="
+            (createForm.get('doesSport')?.touched ||
+              createForm.get('doesSport')?.dirty) &&
+            createForm.get('doesSport')?.invalid &&
+            createForm.get('doesSport')?.getError('required')
+          "
+          >does sport is required</mat-error
+        >
+      </div>
+      <div>
+        <div style="margin: 5px 0 15px 0; color: #c7c7c7">
+          <mat-label>Gender *</mat-label>
+        </div>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button
+            color="primary"
+            style="margin-right: 10px"
+            value="Male"
+            >Male</mat-radio-button
+          >
+          <mat-radio-button color="primary" value="Female"
+            >Female</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error
+          *ngIf="
+            (createForm.get('gender')?.touched ||
+              createForm.get('gender')?.dirty) &&
+            createForm.get('gender')?.invalid &&
+            createForm.get('gender')?.getError('required')
+          "
+          >age is required</mat-error
+        >
+      </div>
+      <button
+        style="margin: 25px 0 15px 0"
+        mat-raised-button
+        color="primary"
+        [disabled]="isLoading || createForm.get('email')?.pending"
+        type="submit"
+      >
+        submit
+      </button>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div>
+      <a
+        mat-button
+        routerLink="home"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >home</a
+      >
+      <a
+        mat-button
+        routerLink="employees"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >employees</a
+      >
+      <a
+        mat-button
+        routerLink="employees/create"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >create employee</a
+      >
+      <a
+        mat-button
+        routerLink="about"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >about</a
+      >
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+

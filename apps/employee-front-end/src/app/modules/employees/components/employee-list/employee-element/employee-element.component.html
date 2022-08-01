@@ -1,0 +1,16 @@
+<mat-card class="employee-card mat-elevation-z10">
+    <mat-card-title>{{employee.name}}</mat-card-title>
+    <mat-card-subtitle>{{employee.gender}} ({{employee.age}})</mat-card-subtitle>
+    <mat-card-content>
+        <p>email: {{employee.email}}</p>
+        <p>does sport: {{employee.doesSport ? 'yes':'no'}}</p>
+         </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onUpdate()">update</button>
+        
+        <button  mat-raised-button color="warn" (click)="onDelete()">delete</button>
+        <button style="margin:0;" mat-raised-button color="accent" (click)="onShowDetails()">details</button>
+       
+    </mat-card-actions>
+
+</mat-card>

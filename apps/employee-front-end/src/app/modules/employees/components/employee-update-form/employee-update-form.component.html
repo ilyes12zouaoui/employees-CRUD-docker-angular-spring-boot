@@ -1,0 +1,164 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<h1 *ngIf="!isFound && !isLoading"></h1>
+<div class="flex-center-container">
+  <mat-card *ngIf="!isFound && !isLoading" class="mat-elevation-z10">
+    <h1 class="mat-display-1">Employee not found</h1>
+  </mat-card>
+  <mat-card *ngIf="isFound && !isLoading" class="employee-card mat-elevation-z10">
+    <h2 class="mat-h1">Update Employee</h2>
+
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="updateForm"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      "
+    >
+      <mat-form-field appearance="standard">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type name"
+          formControlName="name"
+          #nameInput
+        />
+
+        <mat-error
+          *ngIf="
+            (updateForm.get('name')?.touched ||
+              updateForm.get('name')?.dirty) &&
+            updateForm.get('name')?.invalid &&
+            updateForm.get('name')?.getError('required')
+          "
+          >name is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (updateForm.get('name')?.touched ||
+              updateForm.get('name')?.dirty) &&
+            updateForm.get('name')?.invalid &&
+            updateForm.get('name')?.getError('testValueNotAllowed')
+          "
+          >test value not allowed</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (updateForm.get('name')?.touched ||
+              updateForm.get('name')?.dirty) &&
+            updateForm.get('name')?.invalid &&
+            updateForm.get('name')?.getError('minlength')
+          "
+          >min length 3</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type name"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="
+            (updateForm.get('email')?.touched ||
+              updateForm.get('email')?.dirty) &&
+            updateForm.get('email')?.invalid &&
+            updateForm.get('email')?.getError('required')
+          "
+          >email is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (updateForm.get('email')?.touched ||
+              updateForm.get('email')?.dirty) &&
+            updateForm.get('email')?.invalid &&
+            updateForm.get('email')?.getError('isEmailUnique')
+          "
+          >email is already used</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Age</mat-label>
+        <input
+          matInput
+          inputmode="tel"
+          placeholder="Type age"
+          formControlName="age"
+        />
+        <mat-error
+          *ngIf="
+            (updateForm.get('age')?.touched || updateForm.get('age')?.dirty) &&
+            updateForm.get('age')?.invalid &&
+            updateForm.get('age')?.getError('required')
+          "
+          >age is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            (updateForm.get('age')?.touched || updateForm.get('age')?.dirty) &&
+            updateForm.get('age')?.invalid &&
+            updateForm.get('age')?.getError('min')
+          "
+          >min age is 1</mat-error
+        >
+      </mat-form-field>
+
+      <div style="margin: 15px 0">
+        <mat-checkbox
+          color="primary"
+          class="example-margin"
+          name="doesSport"
+          formControlName="doesSport"
+          >does sport:</mat-checkbox
+        >
+        <mat-error
+          *ngIf="
+            (updateForm.get('doesSport')?.touched ||
+              updateForm.get('doesSport')?.dirty) &&
+            updateForm.get('doesSport')?.invalid &&
+            updateForm.get('doesSport')?.getError('required')
+          "
+          >does sport is required</mat-error
+        >
+      </div>
+      <div>
+        <div style="margin: 5px 0 15px 0; color: #c7c7c7">
+          <mat-label>Gender *</mat-label>
+        </div>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button
+            color="primary"
+            style="margin-right: 10px"
+            value="Male"
+            >Male</mat-radio-button
+          >
+          <mat-radio-button color="primary" value="Female"
+            >Female</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error
+          *ngIf="
+            (updateForm.get('gender')?.touched ||
+              updateForm.get('gender')?.dirty) &&
+            updateForm.get('gender')?.invalid &&
+            updateForm.get('gender')?.getError('required')
+          "
+          >age is required</mat-error
+        >
+      </div>
+      <button
+        style="margin: 25px 0 15px 0"
+        mat-raised-button
+        color="primary"
+        [disabled]="isLoading || updateForm.get('email')?.pending"
+        type="submit"
+      >
+        submit
+      </button>
+    </form>
+  </mat-card>
+</div>
